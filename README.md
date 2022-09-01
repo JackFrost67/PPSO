@@ -3,9 +3,9 @@ Parallel Particle Swarm Optimization implementations
 
 3 different implementations:
 
-	- using OpenMP framework
-	- using message passing paradigm MPI
-	- using GPU power with CUDA
+- using OpenMP framework
+- using message passing paradigm MPI
+- using GPU power with CUDA
 
 Benchmark functions used to evaluate the performance of the various implementations:
 
