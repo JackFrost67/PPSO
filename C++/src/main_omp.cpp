@@ -4,17 +4,19 @@
 // ./particle_swarm_optimization n_iterations n_particles
 int main(int argc, char *argv[])
 {   
+    int n_proc = omp_get_num_procs();
+    // For benchmarking purposes
     if(argc != 1)
     {
         n_iterations = atoi(argv[1]);
         n_particles = atoi(argv[2]);
+        
+        if(argc == 4)
+            n_proc = atoi(argv[3]);
     }
-    
-    //std::cout << "Iterations: " << n_iterations << "\tParticles: " << n_particles << std::endl;
-
     Particle* swarm = new Particle[n_particles]; 
 
-    // meausre time of execution of the algorithm
+    // measure time of execution of the algorithm
     auto start = std::chrono::high_resolution_clock::now();
 
     // update each particle in the swarm for n_iterations times
@@ -25,7 +27,7 @@ int main(int argc, char *argv[])
         cognitive = (-3.f * ((float) it / (float) n_iterations)) + 3.5f;
         social = (3.f * ((float) it / (float) n_iterations)) + 0.5f;
         
-        #pragma omp parallel for schedule(static)
+        #pragma omp parallel for schedule(static) num_threads(n_proc)
         for(int i = 0; i < n_particles; i++)
         {   
             swarm[i].update(gbest, gbest_fitness, inertia, cognitive, social);

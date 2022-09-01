@@ -17,11 +17,12 @@
 class Particle 
 {
     public:
-        Position pbest; 
-        Position position; 
-        Position velocity; 
-        float pbest_fitness;
+        Position pbest; // best position of the particle
+        Position position; // current position
+        Position velocity; // velocity of the particle
+        float pbest_fitness; // personal best fitness
 
+        // Constructor
         Particle() 
         {
             position = {rand_uniform(MIN_D, MAX_D), rand_uniform(MIN_D, MAX_D)};

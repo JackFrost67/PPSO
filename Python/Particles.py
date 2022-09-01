@@ -1,6 +1,6 @@
 
-# definition of a particle class for the particle swarm optimization
-# the particle class has the following attributes:
+# Definition of a particle class for the particle swarm optimization
+# The particle class has the following attributes:
 #   - position: the current position of the particle
 #   - velocity: the current velocity of the particle
 #   - fitness: the current fitness of the particle

@@ -1,4 +1,5 @@
 #!/bin/bash
+# sh run.sh
 
 filename=results/results.txt
 

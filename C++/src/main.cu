@@ -84,18 +84,20 @@ __global__ void pso_kernel(Particle* swarm, Position* gbest, float &gbest_fitnes
 }
 
 int main(int argc, char** argv){
+    // Thread and block dimensions
+    int threadsNum = 1024;
+    int blocksNum = (n_particles + threadsNum - 1) / threadsNum;
+    
+    // For benchmarking purposes
     if(argc != 1)
     {
         n_iterations = atoi(argv[1]);
         n_particles = atoi(argv[2]);
+        if(argc >= 4)
+            threadsNum = atoi(argv[3]);
+            blocksNum = (n_particles + threadsNum - 1) / threadsNum;
     }
-
-    //std::cout << "Iterations: " << n_iterations << "\tParticles: " << n_particles << std::endl;
-
-    // Thread and block dimensions
-    int threadsNum = 1024;
-    int blocksNum = (n_particles + threadsNum - 1) / threadsNum;
-
+    
     curandState* state;
     cudaMalloc(&state, n_particles * sizeof(curandState));
     init_kernel<<<1, 1>>>(state, time(NULL));

@@ -1,4 +1,5 @@
 #!/bin/bash
+# sh compile $NAMEOFTHEOBJECTIVEFUNCTION 
 
 if [ "$#" -eq 2 ];
 then

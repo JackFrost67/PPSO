@@ -12,19 +12,19 @@ int main(int argc, char** argv)
     int distributed_particles = n_particles / size;
     Particle *swarm = new Particle[distributed_particles];
 
+    // Private variable for each process
     float *m_gbest_fitnes = new float[size];
     Position *m_gbest = new Position[size];
 
     if(argc != 1)
     {
+        // For benchmarking purposes
         n_iterations = atoi(argv[1]);
         n_particles = atoi(argv[2]);
     }
 
     if(rank == 0)
     {   
-        std::cout << "Iterations: " << n_iterations << "\tParticles: " << n_particles << std::endl;
-
         // measure time of execution of the algorithm
         start = std::chrono::high_resolution_clock::now();
     }

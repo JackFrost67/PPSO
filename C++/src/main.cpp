@@ -3,17 +3,15 @@
 // ./particle_swarm_optimization n_iterations n_particles
 int main(int argc, char *argv[])
 {   
+    // For benchmarking purposes
     if(argc != 1)
     {
         n_iterations = atoi(argv[1]);
         n_particles = atoi(argv[2]);
     }
-    
-    std::cout << "Iterations: " << n_iterations << "\tParticles: " << n_particles << std::endl;
-
     Particle* swarm = new Particle[n_particles]; 
 
-    // meausre time of execution of the algorithm
+    // measure time of execution of the algorithm
     auto start = std::chrono::high_resolution_clock::now();
 
     // update each particle in the swarm for n_iterations times

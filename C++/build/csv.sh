@@ -1,6 +1,7 @@
 #!/bin/bash
+# Script for CSV filling with dimension changing and static max processors usage
 
-filename=results/results1.csv
+filename=results/results_fix.csv
 
 echo "Type;x;y;Best Fitness;Time" >> $filename
 

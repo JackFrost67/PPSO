@@ -7,12 +7,12 @@ from numpy import random
 import matplotlib.pyplot as plt
 from itertools import groupby
 
-max_velocity = 1  # maximum velocity of a particle
+max_velocity = 0.1  # maximum velocity of a particle
 min_velocity = -max_velocity
-max_position_x = 500  # maximum dimension x of the map
-min_position_x = -500  # minimum dimension x of the map
-max_position_y = 500  # maximum dimension y of the map
-min_position_y = -500  # minimum dimension y of the map
+max_position_x = 5  # maximum dimension x of the map
+min_position_x = -5  # minimum dimension x of the map
+max_position_y = 5  # maximum dimension y of the map
+min_position_y = -5  # minimum dimension y of the map
 
 n_iterations = 100  # maximum number of iterations
 n_particles = 1000  # number of particles in the swarm
@@ -25,10 +25,8 @@ def evaluate(position):
     y = position[1]
 
     # Ackley function [-5, 5] opt(0, 0) = 0
-    '''
     return -20 * (np.exp(-0.2 * np.sqrt(0.5 * (x**2 + y**2)))) - \
         np.exp(0.5 * (np.cos(2 * np.pi * x) + np.cos(2 * np.pi * y))) + np.e + 20
-    '''
 
     # Goldestein-Price function [-2, 2] opt(0, -1) = 3
     '''
@@ -46,7 +44,7 @@ def evaluate(position):
     # return 10 * n_dimension + (x**2 - 10 * np.cos(2 * np.pi * x)) + (y**2 - 10 * np.cos(2 * np.pi * y))
 
     # Schwefel function [-500, 500] opt(420.97, 420.97) = 0
-    return (418.9829 * n_dimension) - (x * np.sin(np.sqrt(abs(x)))) - (y * np.sin(np.sqrt(abs(y))))
+    # return (418.9829 * n_dimension) - (x * np.sin(np.sqrt(abs(x)))) - (y * np.sin(np.sqrt(abs(y))))
 
 
 swarm = []
@@ -140,6 +138,7 @@ def main():
     ax.set_xlim(min_position_x, max_position_x)
     ax.set_ylim(min_position_y, max_position_y)
 
+    # Function for animating the plot
     def animate(i):
         global swarm, gbest_fitness, gbest
         title = 'Iteration: ' + str(i)
@@ -150,7 +149,7 @@ def main():
     anim = FuncAnimation(fig, func=animate, frames=list(range(n_iterations)),
                          interval=0.5, blit=False, repeat=False, cache_frame_data=False)
 
-    anim.save("Schwefel.mp4", fps=30)
+    anim.save("Ackley.mp4", fps=30)
 
     # print the best particle position and fitness
     print("Position best:", gbest, "Fitness:", gbest_fitness)
